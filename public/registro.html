@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>asdfaseracdasd</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+	<script src="https://code.jquery.com/jquery.js"></script>
+
+</head>
+
+<body>
+	<div id="users"></div>
+	<script src="socket.io/socket.io.js"></script>
+	<script type="text/javascript">
+		var socket = io.connect();
+
+
+
+		socket.on('usernames', function(data) {
+
+
+			var html = '';
+
+			for (var username in data) {
+				html ="---- <h2>nuevo usuario</h2> -----";
+				if (data[username].nick) {
+
+					username = data[username];
+					html += "<h4>"+ username.nick + "</h4><br>" + new Date(Date.now()) + '<br/>';
+					html += "<p>Browser Version: " + username.appVersion + "</p>";
+					html += "<p>Platform: " + username.platform + "</p>";
+					html += "<p>User-agent header: " + username.userAgent + "</p>";
+					html += "---------------<br>";
+				}
+			};
+			$('#users').append(html);
+		});
+	</script>
+
+
+
+
+</body>
+
+</html>

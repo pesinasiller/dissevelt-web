@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>asdfaseracdasd</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+	<script src="https://code.jquery.com/jquery.js"></script>
+
+</head>
+
+<body>
+	<div id="users"></div>
+	<script src="socket.io/socket.io.js"></script>
+	<script type="text/javascript">
+		var socket = io.connect();
+
+
+		//recibe mensaje
+		socket.on('newmessage', function(data) {
+			$('#chat').append('<b>' + data.nick + ":</b> " + data.msg + "<br/>");
+			console.log("recibe mensaje: " + data.nick + " " + data.msg);
+
+			sendNote(data.msg + 48);
+			//  sendMiddleC(midi, 1, 64);
+		});
+
+
+
+
+
+
+		/* ------------------------ MIDI ---------------------*/
+
+
+		// inicializa midi
+
+		/*
+				function onMIDISuccess(midiAccess) {
+					console.log("MIDI ready!");
+					midi = midiAccess; // store in the global (in real usage, would probably keep in an object instance)
+					console.log("midi")
+					console.log(midi)
+				}
+
+				function onMIDIFailure(msg) {
+					console.log("Failed to get MIDI access - " + msg);
+				}
+		*/
+
+
+		navigator.requestMIDIAccess().then(onMIDISuccess, onMIDIFailure);
+
+
+
+
+
+		var outputs;
+
+		function onMIDIFailure(msg) {
+			console.log('Failed to get MIDI access - ' + msg);
+
+		}
+
+		function onMIDISuccess(midiAccess) {
+			outputs = midiAccess.outputs;
+			//setTimeout(testOutputs, 500);
+		}
+/*
+		function testOutputs() {
+			console.log('Testing MIDI-Out ports...');
+			outputs.forEach(function(port) {
+				console.log('id:', port.id, 'manufacturer:', port.manufacturer, 'name:', port.name, 'version:', port.version);
+				port.open();
+				port.send([0x90, 60, 0x7f]);
+			});
+			setTimeout(stopOutputs, 1000);
+		}
+
+		function stopOutputs() {
+			outputs.forEach(function(port) {
+				port.send([0x80, 60, 0]);
+			});
+		}
+*/
+		function sendNote(note) {
+			outputs.forEach(function(port) {
+				port.open();
+				port.send([0x90, note, 0x7f]);
+				port.send([0x80, note, 0], window.performance.now() + 1000.0);
+			});
+		}
+		/*
+				//tocar nota MIDI
+				function sendMiddleC(midiAccess, portID, note) {
+					console.log(midi);
+					var list = midiAccess.outputs.get(portID);
+
+						console.log(list);
+						list.send([0x90, note, 0x7f]);
+			*/
+		//	list[i].send([0x80, note, 0x40], window.performance.now() + 1000.0);
+
+
+
+
+		//	var noteOnMessage = [0x90, note, 0x7f]; // note on, middle C, full velocity
+		//	var output = midi.outputs.get(portID);
+		//	output.send(noteOnMessage); //omitting the timestamp means send immediately.
+		//	output.send([0x80, note, 0x40], window.performance.now() + 1000.0); //apagar
+		//	console.log(note);
+		//	}
+
+		/*
+		function stopMiddleC(midiAccess, portID) {
+		    var output = midiAccess.outputs.get(portID);
+		    output.send([0x80, 60, 0x40], window.performance.now() + 1000.0); // Inlined array creation- note off, middle C,  
+		    // release velocity = 64, timestamp = now + 1000ms.
+		    output.send([0x80, 61, 0x40], window.performance.now() + 1000.0);
+		}
+		*/
+	</script>
+
+
+
+
+</body>
+
+</html>

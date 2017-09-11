@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title> &#9787;</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<style>
+		body {
+			margin: 0px;
+			overflow: hidden;
+		}
+
+		.container-login {
+			text-align: center;
+			padding-top: 20%;
+			background-image: url('img/rayas.gif');
+			height: 100%;
+			position: absolute;
+			width: 100%;
+			/*	background-position-y: -200px;
+			background-size: cover;
+			*/
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery.js"></script>
+
+</head>
+
+<body>
+	<div id="three-container" style="display:none;"></div>
+
+	<div class="container-login">
+
+
+		<input id="nickname" style="" type="text" placeholder="Escribe tu nombre" autofocus>
+		<br><br>
+		<button type="submit" id="setNick">Entrar</button>
+
+
+		<div id="login-error" style="display:none; color:red;">
+			Ese nombre ya existe, intenta con otro
+		</div>
+
+
+	</div>
+
+
+
+
+	<script src="js/playsound.js"></script>
+	<script src="js/three.js"></script>
+	<script src="js/Projector.js"></script>
+	<script src="js/CSS3DRenderer.js"></script>
+	<script src="js/OBJLoader.js"></script>
+	<script src="js/MTLLoader.js"></script>
+	<script src="js/OrbitControls.js"></script>
+	<script src="js/ConvexGeometry.js"></script>
+	<script src="https://sole.github.io/tween.js/build/tween.min.js"></script>
+	<script src="js/Detector.js"></script>
+	<script src="js/stats.min.js"></script>
+
+
+	<script src="socket.io/socket.io.js"></script>
+	<script src="js/conexion.js"></script>
+	<script src="js/dissevelt.js"></script>
+</body>
+
+</html>

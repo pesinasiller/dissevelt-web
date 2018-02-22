@@ -9,6 +9,8 @@
 		body {
 			margin: 0px;
 			overflow: hidden;
+			width: 100vw;
+			height: 100vh;
 		}
 
 		.container-login {
@@ -18,9 +20,18 @@
 			height: 100%;
 			position: absolute;
 			width: 100%;
-			/*	background-position-y: -200px;
-			background-size: cover;
-			*/
+		}
+
+		#login-error {
+			display: none;
+			color: red;
+		}
+
+		#three-container {
+			position: absolute;
+			display: none;
+			width: 100vw;
+			height: 100vh;
 		}
 	</style>
 	<script src="https://code.jquery.com/jquery.js"></script>
@@ -28,38 +39,30 @@
 </head>
 
 <body>
-	<div id="three-container" style="display:none;"></div>
+	<div id="three-container"></div>
 
 	<div class="container-login">
 
-
-		<input id="nickname" style="" type="text" placeholder="Escribe tu nombre" autofocus>
+		<input id="nickname" type="text" placeholder="Escribe tu nombre" autofocus>
 		<br><br>
 		<button type="submit" id="setNick">Entrar</button>
 
-
-		<div id="login-error" style="display:none; color:red;">
+		<div id="login-error">
 			Ese nombre ya existe, intenta con otro
 		</div>
 
-
 	</div>
 
-
-
-
-	<script src="js/playsound.js"></script>
-	<script src="js/three.js"></script>
-	<script src="js/Projector.js"></script>
-	<script src="js/CSS3DRenderer.js"></script>
-	<script src="js/OBJLoader.js"></script>
-	<script src="js/MTLLoader.js"></script>
-	<script src="js/OrbitControls.js"></script>
-	<script src="js/ConvexGeometry.js"></script>
+	<script src="lib/three.js"></script>
+	<script src="lib/Projector.js"></script>
+	<script src="lib/CSS3DRenderer.js"></script>
+	<script src="lib/OBJLoader.js"></script>
+	<script src="lib/MTLLoader.js"></script>
+	<script src="lib/OrbitControls.js"></script>
+	<script src="lib/ConvexGeometry.js"></script>
 	<script src="https://sole.github.io/tween.js/build/tween.min.js"></script>
-	<script src="js/Detector.js"></script>
-	<script src="js/stats.min.js"></script>
-
+	<script src="lib/Detector.js"></script>
+	<script src="lib/stats.min.js"></script>
 
 	<script src="socket.io/socket.io.js"></script>
 	<script src="js/conexion.js"></script>

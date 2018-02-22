@@ -1,7 +1,7 @@
 {
-  "name": "nodechat",
+  "name": "dissevelt",
   "version": "0.1.0",
-  "description": "three.js chat",
+  "description": "interactive music interface",
   "main": "app.js",
   "repository": "",
   "author": "Carlos Pesina",

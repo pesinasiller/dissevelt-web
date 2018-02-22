@@ -4,14 +4,18 @@ var express = require('express'),
     server = require('http').createServer(app),
     io = require("socket.io").listen(server),
     nicknames = {};
-     
-    
+
+var imagen_fondo = { fondo: "img/fondos/patioMAZ.jpg" };
+
 app.use(express.static(path.join(__dirname, 'public')));
 
-//server.listen(8000);
 server.listen(process.env.PORT, process.env.IP);
 app.get('/', function(req, res) {
     res.sendfile(__dirname + '/public/index.html');
+});
+
+app.get('/fondo', function(req, res) {
+    res.json(imagen_fondo);
 });
 
 io.sockets.on('connection', function(socket) {
@@ -33,6 +37,10 @@ io.sockets.on('connection', function(socket) {
         }
     });
 
+    socket.on('botonCambiarFondo', function(data) {
+        imagen_fondo.fondo = data.fondo;
+        io.sockets.emit('cambiarFondo', { fondo: imagen_fondo.fondo });
+    });
 
     socket.on('disconnect', function(data) {
         if (!socket.nickname) return;
@@ -43,4 +51,5 @@ io.sockets.on('connection', function(socket) {
     function updateNickNames() {
         io.sockets.emit('usernames', nicknames);
     }
+
 });

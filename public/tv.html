@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+ <meta charset="utf-8">
+ <title>tv</title>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.0/p5.js"></script>
+ <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.0/addons/p5.dom.js"></script>
+ <style type="text/css">
+  body,
+  html {
+   margin: 0;
+   overflow: hidden;
+  }
+ </style>
+ <script src="socket.io/socket.io.js"></script>
+ <script type="text/javascript">
+  var socket = io.connect();
+
+  var nicks = [];
+
+  socket.on('newmessage', function(data) {
+   nicks.push(data.nick);
+  });
+
+
+  function setup() {
+   createCanvas(windowWidth, windowHeight);
+  }
+
+  function draw() {
+   textSize(32);
+   if (nicks.length > 0) {
+    text(nicks.pop(), random(windowWidth), random(windowHeight));
+   }
+
+   background('rgba(255, 204, 100, 0.03)');
+  }
+ </script>
+</head>
+
+<body>
+
+
+</body>
+
+</html>

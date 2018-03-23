@@ -1,9 +1,5 @@
-nodechat
+XHGC
 ========
 
-Chat with Node.js
-
-For installing dependencies:
-~~~~~~~~~~~~~~~~~~~~~
-npm install
+trabajo en progreso
 ~~~~~~~~~~~~~~~~~~~~~
